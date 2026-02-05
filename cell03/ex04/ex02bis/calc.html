@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            #container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                gap: 20px
+            }
+            #col {
+                display: inline-block;
+                
+            }
+            .textinput {
+                padding: 10px;
+            }
+            #dropdown {
+                text-align: center;
+            }
+            button {
+                padding: 5px 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h2>Calculator</h2>
+            <div id="col">
+                <label for="left"></label>
+                <input type="text" name="left" id="left" class="textinput">
+
+                <label for="sign"></label>
+                <select name="sign" id="dropdown" class="textinput">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                    <option value="%">%</option>
+                </select>
+
+                <label for="right"></label>
+                <input type="text" name="right" id=right class="textinput">
+            </div>
+            <button onclick="calculate()">Try me</button>
+        </div>
+        <script>
+            function startTimer() {
+                inactivityTimer = setTimeout(() => {alert("Please, use me...");}, 30000);
+            } 
+            startTimer();
+            function calculate(){
+                clearTimeout(inactivityTimer)
+                const a = Number(document.getElementById("left").value)
+                const b = Number(document.getElementById("right").value)
+                const selected_sign = document.getElementById("dropdown").value;
+                let result = 0
+                if (a < 0 || b < 0){
+                    alert("Error :(");
+                } else if (b == 0 && selected_sign === "/"){
+                    alert("It's over 9000!");
+                } else {
+                    switch (selected_sign) {
+                        case "+":
+                            result = a + b;
+                            break;
+                        case "-":
+                            result = a - b;
+                            break;
+                        case "*":
+                            result = a * b;
+                            break;
+                        case "/":
+                            result = a / b;
+                            break;
+                        case "%":
+                            result = a % b;
+                            break;
+                    }
+                    alert(result);
+                    console.log(result);
+                }
+                startTimer()  
+            }
+        </script>
+    </body>
+</html>

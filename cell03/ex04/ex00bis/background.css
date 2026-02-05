@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color 0.3s ease;
+}
+
+#cycle {
+    padding: 20px 70px;
+    background-color: rgb(75, 75, 75);
+    border: 3px solid rgb(170, 179, 196);
+    border-radius: 10px;
+    font-size: 20px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    cursor: pointer;
+}
+
+#cycle:hover {
+    background-color: rgb(114, 114, 114);
+}
+
