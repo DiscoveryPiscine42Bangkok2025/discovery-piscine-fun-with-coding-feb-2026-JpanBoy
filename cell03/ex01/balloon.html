@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #balloon {
+                width: 200px;
+                height: 200px;
+                background-color: red;
+                border-radius: 100%;
+                cursor: pointer;
+                transition: background-color 0.1s ease;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="balloon" onclick="balloonFunc()" onmouseleave="inflate()"></div>
+        <script>
+            colors = ["green","blue","red"]
+            let index = 0;
+            const ball = document.getElementById("balloon");
+            function balloonFunc() {
+                
+                ball.style.width = ball.offsetWidth + 20 + "px";
+                ball.style.height = ball.offsetHeight + 20 + "px";
+                ball.style.backgroundColor = colors[index]
+                index++
+                if (index > 2) index = 0;
+                if (ball.offsetHeight >= 420){
+                    ball.style.width = "200px";
+                    ball.style.height = "200px";
+                }
+            }
+
+            function inflate() {
+                if (ball.offsetHeight >= 210) {
+                    ball.style.width = ball.offsetWidth - 10 + "px";
+                    ball.style.height = ball.offsetHeight - 10 + "px";
+                }
+            }
+        </script>
+    </body>
+</html>
