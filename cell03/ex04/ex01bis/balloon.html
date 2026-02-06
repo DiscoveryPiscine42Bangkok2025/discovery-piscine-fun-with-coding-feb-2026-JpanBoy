@@ -21,27 +21,37 @@
     </head>
     <body>
         <div id="balloon" onclick="balloonFunc()" onmouseleave="inflate()"></div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
-            colors = ["green","blue","red"]
+            const colors = ["green", "blue", "red"];
             let index = 0;
-            const ball = document.getElementById("balloon");
+
+            const $ball = $("#balloon");
+
             function balloonFunc() {
-                
-                ball.style.width = ball.offsetWidth + 20 + "px";
-                ball.style.height = ball.offsetHeight + 20 + "px";
-                ball.style.backgroundColor = colors[index]
-                index++
+                $ball.css({
+                    width:  $ball.width()  + 20,
+                    height: $ball.height() + 20,
+                    backgroundColor: colors[index]
+                });
+
+                index++;
                 if (index > 2) index = 0;
-                if (ball.offsetHeight >= 420){
-                    ball.style.width = "200px";
-                    ball.style.height = "200px";
+
+                if ($ball.height() >= 420) {
+                    $ball.css({
+                        width: 200,
+                        height: 200
+                    });
                 }
             }
-            
+
             function inflate() {
-                if (ball.offsetHeight >= 210) {
-                    ball.style.width = ball.offsetWidth - 10 + "px";
-                    ball.style.height = ball.offsetHeight - 10 + "px";
+                if ($ball.height() >= 210) {
+                    $ball.css({
+                        width:  $ball.width()  - 10,
+                        height: $ball.height() - 10
+                    });
                 }
             }
         </script>

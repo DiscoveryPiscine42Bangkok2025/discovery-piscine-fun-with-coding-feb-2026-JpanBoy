@@ -1,4 +1,4 @@
-const ftList = document.getElementById("ft_list");
+const $ftList = $("#ft_list");
 
 function setCookie(name, value) {
     document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
@@ -7,9 +7,9 @@ function setCookie(name, value) {
 function getCookie(name) {
     const cookies = document.cookie.split("; ");
     for (let cookie of cookies) {
-        const [key, value] = cookie.split("=");
-        if (key === name) {
-            return decodeURIComponent(value);
+        const parts = cookie.split("=");
+        if (parts[0] === name) {
+            return decodeURIComponent(parts[1]);
         }
     }
     return "";
@@ -17,8 +17,8 @@ function getCookie(name) {
 
 function saveTodos() {
     const todos = [];
-    document.querySelectorAll(".todo").forEach(todo => {
-        todos.push(todo.textContent);
+    $(".todo").each(function () {
+        todos.push($(this).text());
     });
     setCookie("todos", JSON.stringify(todos));
 }
@@ -27,29 +27,33 @@ function loadTodos() {
     const data = getCookie("todos");
     if (data) {
         const todos = JSON.parse(data);
-        todos.forEach(text => addTodo(text, false));
+        $.each(todos, function (_, text) {
+            addTodo(text, false);
+        });
     }
 }
 
 function addTodo(text, save = true) {
-    const div = document.createElement("div");
-    div.className = "todo";
-    div.textContent = text;
+    const $div = $("<div></div>")
+        .addClass("todo")
+        .text(text);
 
-    div.addEventListener("click", () => {
+    $div.on("click", function () {
         if (confirm("Do you want to delete this TO DO?")) {
-            div.remove();
+            $(this).remove();
             saveTodos();
         }
     });
-    ftList.prepend(div);
+
+    $ftList.prepend($div);
     if (save) saveTodos();
 }
 
-document.getElementById("newBtn").addEventListener("click", () => {
+$("#newBtn").on("click", function () {
     const text = prompt("Enter a new TO DO:");
     if (text && text.trim() !== "") {
         addTodo(text.trim());
     }
 });
+
 loadTodos();

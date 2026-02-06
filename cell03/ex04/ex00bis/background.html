@@ -6,11 +6,17 @@
     </head>
     <body>
         <button id=cycle onclick="ChangeColor()">Click Me</button>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
             function ChangeColor() {
-                const color = [Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)]
-                document.body.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`
-            }
+            const color = [
+                Math.floor(Math.random() * 256),
+                Math.floor(Math.random() * 256),
+                Math.floor(Math.random() * 256)
+            ];
+
+            $('body').css('background-color', `rgb(${color[0]}, ${color[1]}, ${color[2]})`);
+        }
         </script>
     </body>
 </html>

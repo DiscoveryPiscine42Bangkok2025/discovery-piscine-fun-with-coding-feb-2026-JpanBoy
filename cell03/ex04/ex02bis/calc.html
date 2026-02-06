@@ -47,22 +47,33 @@
             </div>
             <button onclick="calculate()">Try me</button>
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
+            let inactivityTimer;
             function startTimer() {
-                inactivityTimer = setTimeout(() => {alert("Please, use me...");}, 30000);
-            } 
+                inactivityTimer = setTimeout(function () {
+                    alert("Please, use me...");
+                }, 30000);
+            }
+
             startTimer();
-            function calculate(){
-                clearTimeout(inactivityTimer)
-                const a = Number(document.getElementById("left").value)
-                const b = Number(document.getElementById("right").value)
-                const selected_sign = document.getElementById("dropdown").value;
-                let result = 0
-                if (a < 0 || b < 0){
+
+            function calculate() {
+                clearTimeout(inactivityTimer);
+
+                const a = Number($("#left").val());
+                const b = Number($("#right").val());
+                const selected_sign = $("#dropdown").val();
+
+                let result = 0;
+
+                if (a < 0 || b < 0) {
                     alert("Error :(");
-                } else if (b == 0 && selected_sign === "/"){
+                } 
+                else if (b === 0 && selected_sign === "/") {
                     alert("It's over 9000!");
-                } else {
+                } 
+                else {
                     switch (selected_sign) {
                         case "+":
                             result = a + b;
@@ -80,10 +91,12 @@
                             result = a % b;
                             break;
                     }
+
                     alert(result);
                     console.log(result);
                 }
-                startTimer()  
+
+                startTimer();
             }
         </script>
     </body>
